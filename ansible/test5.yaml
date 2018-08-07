@@ -1,0 +1,15 @@
+---
+- hosts: appserver
+  become: true
+  tasks:
+  - name: install firefox
+    yum:
+      name: firefox
+      state: "latest"
+  - iptables:
+      chain: INPUT
+      source: 8.8.8.8
+      jump: DROP
+    become: yes
+  - hostname:
+      name: appserver 

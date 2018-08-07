@@ -1,0 +1,15 @@
+---
+- name: Install the Apache web-server
+  yum: name=httpd state=installed
+
+- name: start service
+  service: name=httpd state=started enabled=true
+
+- name: Copy the index file
+  copy: src=/etc/ansible/roles/apache/files/index.html dest=/var/www/html/index.html
+  
+  handlers:
+    - name: Restart the httpd service
+      service: 
+        name:httpd 
+        state:restarted 

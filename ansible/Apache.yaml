@@ -1,0 +1,6 @@
+---
+- name: Configuring webapplication
+  hosts: appgroup
+  become: true
+  roles:
+    - apache
